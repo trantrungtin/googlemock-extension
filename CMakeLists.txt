@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.10)
 project (demo)
 set(CMAKE_CXX_STANDARD 14)
 
@@ -25,5 +25,6 @@ file(GLOB_RECURSE SOURCES RELATIVE
 )
 
 add_executable(demo ${SOURCES})
+target_link_libraries(demo pthread)
 
 
