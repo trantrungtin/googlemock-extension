@@ -8,6 +8,7 @@ set(GTEST_DIR ${GOOGLE_TEST_DIR}/googletest)
 set(GMOCK_DIR ${GOOGLE_TEST_DIR}/googlemock)
 
 include_directories(
+    ${PROJECT_SOURCE_DIR}/gmock-extension
     ${PROJECT_SOURCE_DIR}/include
     ${GOOGLE_TEST_DIR}/googletest
     ${GOOGLE_TEST_DIR}/googletest/include

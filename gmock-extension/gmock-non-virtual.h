@@ -1,10 +1,10 @@
 #pragma once
 
+#include "gmock-helper.h"
 #include "gmock/gmock-matchers.h"
 #include "gmock/gmock-spec-builders.h"
 #include "gmock/gmock.h"
 #include "gmock/internal/gmock-pp.h"
-#include "set_function_jump.h"
 
 using namespace testing;
 
@@ -29,25 +29,27 @@ struct GmockExLifecycle {
 
 #define GMOCK_EX_REF_METHOD(X) std::remove_pointer_t<decltype(this)>::X
 
-#define GMOCK_EX_INTERNAL_DEFAULT_IML(_MethodName)                           \
-  static std::vector<char> binary;                                           \
-  static bool isMock = false;                                                \
-  SetupFunc setupMock = [&](bool mock) {                                     \
-    if (mock) {                                                              \
-      if (isMock) {                                                          \
-        return;                                                              \
-      }                                                                      \
-      isMock = true;                                                         \
-      SetFunctionJump(&GMOCK_EX_REF_METHOD(_MethodName),                     \
-                      &GMOCK_EX_REF_METHOD(GMOCK_EX_##_MethodName), binary); \
-    } else {                                                                 \
-      if (isMock) {                                                          \
-        isMock = false;                                                      \
-        RestoreJump(&GMOCK_EX_REF_METHOD(_MethodName), binary);              \
-      }                                                                      \
-    }                                                                        \
-  };                                                                         \
-  GmockExLifecycle instance(std::move(setupMock));                           \
+#define GMOCK_EX_INTERNAL_DEFAULT_IML(_MethodName)               \
+  static std::vector<char> binary;                               \
+  static bool isMock = false;                                    \
+  SetupFunc setupMock = [&](bool mock) {                         \
+    if (mock) {                                                  \
+      if (isMock) {                                              \
+        return;                                                  \
+      }                                                          \
+      isMock = true;                                             \
+      gmock_extension::helper::setJump(                          \
+          &GMOCK_EX_REF_METHOD(_MethodName),                     \
+          &GMOCK_EX_REF_METHOD(GMOCK_EX_##_MethodName), binary); \
+    } else {                                                     \
+      if (isMock) {                                              \
+        isMock = false;                                          \
+        gmock_extension::helper::restoreJump(                    \
+            &GMOCK_EX_REF_METHOD(_MethodName), binary);          \
+      }                                                          \
+    }                                                            \
+  };                                                             \
+  GmockExLifecycle instance(std::move(setupMock));               \
   return instance;
 
 #define GMOCK_EX_INTERNAL_MOCK_METHOD_IMPL(_N, _MethodName)                  \

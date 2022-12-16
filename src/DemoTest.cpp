@@ -4,8 +4,6 @@
 #include <memory>
 
 #include "MockDemo.h"
-#include "gmock-extension.h"
-#include "set_function_jump.h"
 
 #define private public
 #define protected public
