@@ -1,3 +1,10 @@
+/*
+ * DemoTest.cpp
+ *
+ * Created on: Sat Dec 17 2022
+ *     Author: Tin Tran <realtrantrungtin@gmail.com>
+ */
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -12,7 +19,10 @@ using namespace testing;
 using ::testing::_;
 
 class DemoTest : public testing::Test {
-  void SetUp() override { mMock = std::make_shared<MockDemo>(); }
+  void SetUp() override {
+    GTEST_SKIP() << "Skipping all tests for this fixture";
+    mMock = std::make_shared<MockDemo>();
+  }
 
   void TearDown() override {}
 
