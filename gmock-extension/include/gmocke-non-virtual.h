@@ -51,7 +51,7 @@ struct GmockExLifecycle {
     } else {                                                               \
       if (isMock) {                                                        \
         isMock = false;                                                    \
-        GMOCK_REX_RESTORE_FUNC(&GMOCK_EX_REF_METHOD(_MethodName));         \
+        GMOCK_EX_RESTORE_FUNC(&GMOCK_EX_REF_METHOD(_MethodName));         \
       }                                                                    \
     }                                                                      \
   };                                                                       \

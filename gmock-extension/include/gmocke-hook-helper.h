@@ -48,5 +48,5 @@ int restore_func_t(F1 origin) {
 #define GMOCK_EX_REPLACE_FUNC(F1, F2) \
   googlemock_extension::helper::replace_func_t(F1, F2)
 
-#define GMOCK_REX_RESTORE_FUNC(F1) \
+#define GMOCK_EX_RESTORE_FUNC(F1) \
   googlemock_extension::helper::restore_func_t(F1)
