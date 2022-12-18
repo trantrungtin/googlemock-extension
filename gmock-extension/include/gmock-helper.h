@@ -13,7 +13,7 @@
 #include <cstddef>
 #include <vector>
 
-namespace gmock_extension {
+namespace googlemock_extension {
 namespace helper {
 
 int unprotect_memory(const void* address, size_t length, size_t PAGE_SIZE) {
@@ -50,4 +50,4 @@ void restoreJump(F1 address, const std::vector<char>& binary) {
   std::copy(binary.begin(), binary.end(), reinterpret_cast<char*>(function));
 }
 }  // namespace helper
-}  // namespace gmock_extension
+}  // namespace googlemock_extension

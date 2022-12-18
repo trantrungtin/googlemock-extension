@@ -7,4 +7,4 @@
 
 #pragma once
 
-#include "gmock-non-virtual.h"
+#include "gmocke-non-virtual.h"
