@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 3.10)
 project (demo)
 set(CMAKE_CXX_STANDARD 14)
 
-
-set(GOOGLE_TEST_DIR ${PROJECT_SOURCE_DIR}/googletest)
+set(ROOT_DIR ${CMAKE_SOURCE_DIR}/..)
+set(GOOGLE_TEST_DIR ${ROOT_DIR}/googletest)
 set(GTEST_DIR ${GOOGLE_TEST_DIR}/googletest)
 set(GMOCK_DIR ${GOOGLE_TEST_DIR}/googlemock)
 
 include_directories(
-    ${PROJECT_SOURCE_DIR}/gmock-extension
+    ${ROOT_DIR}/gmock-extension
     ${PROJECT_SOURCE_DIR}/include
     ${GOOGLE_TEST_DIR}/googletest
     ${GOOGLE_TEST_DIR}/googletest/include
@@ -20,6 +20,7 @@ include_directories(
 file(GLOB_RECURSE SOURCES RELATIVE 
     ${CMAKE_SOURCE_DIR} 
     "src/*.cpp"
+    "tests/*.cpp"
     ${GTEST_DIR}/src/gtest-all.cc
     ${GMOCK_DIR}/src/gmock-all.cc
     ${GMOCK_DIR}/src/gmock_main.cc
@@ -27,5 +28,3 @@ file(GLOB_RECURSE SOURCES RELATIVE
 
 add_executable(demo ${SOURCES})
 target_link_libraries(demo pthread)
-
-
