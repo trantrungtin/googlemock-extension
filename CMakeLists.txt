@@ -41,4 +41,5 @@ set_target_properties(gmock_extension
     PDB_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     )
 
+add_subdirectory(tests)
 add_subdirectory(examples)
