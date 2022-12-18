@@ -1,5 +1,9 @@
-# googlemock_extension
-Enhance the google mock to allow you mock non-virtual methods.
+# Extension for Google Mock
+
+## Features
+
+*   Support non-virtual methods
+*   Same functionality as google mock
 
 ## Use cases
 
