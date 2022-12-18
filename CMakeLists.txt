@@ -25,7 +25,7 @@ include_directories(
 
 file(GLOB_RECURSE SOURCES RELATIVE 
     ${CMAKE_SOURCE_DIR} 
-    "${CMAKE_SOURCE_DIR}/gmock-extension/src/*.cpp"
+    ${CMAKE_SOURCE_DIR}/gmock-extension/src/*.cpp
 )
 
 add_library(gmocke SHARED ${SOURCES})

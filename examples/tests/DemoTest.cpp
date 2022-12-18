@@ -20,7 +20,6 @@ using ::testing::_;
 
 class DemoTest : public testing::Test {
   void SetUp() override {
-    GTEST_SKIP() << "Skipping all tests for this fixture";
     mMock = std::make_shared<MockDemo>();
   }
 

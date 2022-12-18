@@ -16,17 +16,9 @@
 namespace googlemock_extension {
 namespace helper {
 
-template <typename F1, typename F2>
-int replace_func(F1 origin, F2 replace, gmocke_dummy_func_t* backup) {
-  void* origin_ = reinterpret_cast<void*>((std::size_t&)origin);
-  void* replace_ = reinterpret_cast<void*>((std::size_t&)replace);
-  return DobbyHook(origin_, (dobby_dummy_func_t)replace_,
-                   (dobby_dummy_func_t*)backup);
-}
-
-template <typename F1, typename F2>
-int replace_func(F1 origin, F2 replace) {
-  return replace_func(origin, replace, nullptr);
+int replace_func(void* origin, void* replace) {
+  return DobbyHook(origin, (dobby_dummy_func_t)replace,
+                   (dobby_dummy_func_t*)0);
 }
 
 int restore_func(void* origin) {
