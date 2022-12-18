@@ -26,4 +26,12 @@ add_executable(gmocke_examples
 )
 
 set(GMOCKE_LIB_PATH ${CMAKE_BINARY_DIR}/libgmocke.dylib)
-target_link_libraries(gmocke_examples pthread ${GMOCKE_LIB_PATH})
+target_link_libraries(gmocke_examples pthread gmock_extension)
+
+set_target_properties(gmocke_examples
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    PDB_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    )
