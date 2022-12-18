@@ -1,6 +1,6 @@
-[submodule "googletest"]
-	path = googletest
-	url = https://android.googlesource.com/platform/external/googletest
-[submodule "Dobby"]
-	path = Dobby
+[submodule "thirdparty/Dobby"]
+	path = thirdparty/Dobby
 	url = https://github.com/jmpews/Dobby
+[submodule "thirdparty/googletest"]
+	path = thirdparty/googletest
+	url = https://android.googlesource.com/platform/external/googletest

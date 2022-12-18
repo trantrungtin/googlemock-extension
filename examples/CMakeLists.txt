@@ -3,7 +3,7 @@ project (demo)
 set(CMAKE_CXX_STANDARD 14)
 
 set(ROOT_DIR ${CMAKE_SOURCE_DIR}/..)
-set(GOOGLE_TEST_DIR ${ROOT_DIR}/googletest)
+set(GOOGLE_TEST_DIR ${ROOT_DIR}/thirdparty/googletest)
 set(GTEST_DIR ${GOOGLE_TEST_DIR}/googletest)
 set(GMOCK_DIR ${GOOGLE_TEST_DIR}/googlemock)
 
