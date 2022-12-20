@@ -73,7 +73,8 @@ TEST(ReplaceGlobalFuntionTest, ReplaceOverload_TC3) {
   SettingLifecycle settings;
   double (*global_func_return_4_overload_arg1_ptr)(double);
   global_func_return_4_overload_arg1_ptr = global_func_return_4_overload;
-  replace_func_t(global_func_return_4_overload_arg1_ptr, global_func_return_5_0);
+  replace_func_t(global_func_return_4_overload_arg1_ptr,
+                 global_func_return_5_0);
   EXPECT_EQ(5, global_func_return_4_overload(10.0));
   restore_func_t(global_func_return_4_overload_arg1_ptr);
   EXPECT_EQ(4, global_func_return_4_overload());
@@ -83,8 +84,41 @@ TEST(ReplaceGlobalFuntionTest, ReplaceOverload_TC4) {
   SettingLifecycle settings;
   double (*global_func_return_4_overload_2args_ptr)(int, double);
   global_func_return_4_overload_2args_ptr = global_func_return_4_overload;
-  replace_func_t(global_func_return_4_overload_2args_ptr, global_func_return_5_0);
+  replace_func_t(global_func_return_4_overload_2args_ptr,
+                 global_func_return_5_0);
   EXPECT_EQ(5, global_func_return_4_overload(3, 10.0));
   restore_func_t(global_func_return_4_overload_2args_ptr);
   EXPECT_EQ(10.0, global_func_return_4_overload(3, 10.0));
+}
+
+TEST(ReplaceGlobalFuntionTest, ReplacesStatic) {
+  SettingLifecycle settings;
+  replace_func_t(static_global_func_return_6, global_func_return_5);
+  EXPECT_EQ(5, static_global_func_return_6());
+  restore_func_t(static_global_func_return_6);
+  EXPECT_EQ(6, static_global_func_return_6());
+}
+
+TEST(ReplaceGlobalFuntionTest, ReplacesInline) {
+  SettingLifecycle settings;
+  replace_func_t(inline_global_func_return_7, global_func_return_5);
+  EXPECT_EQ(5, inline_global_func_return_7());
+  restore_func_t(inline_global_func_return_7);
+  EXPECT_EQ(7, inline_global_func_return_7());
+}
+
+TEST(ReplaceGlobalFuntionTest, ReplacesStaticInline) {
+  SettingLifecycle settings;
+  replace_func_t(static_inline_global_func_return_8, global_func_return_5);
+  EXPECT_EQ(5, static_inline_global_func_return_8());
+  restore_func_t(static_inline_global_func_return_8);
+  EXPECT_EQ(8, static_inline_global_func_return_8());
+}
+
+TEST(ReplaceGlobalFuntionTest, ReplacesTemplate) {
+  SettingLifecycle settings;
+  replace_func_t(template_add<int>, global_func_return_5);
+  EXPECT_EQ(5, template_add(1, 2));
+  restore_func_t(template_add<int>);
+  EXPECT_EQ(3, template_add(1, 2));
 }
