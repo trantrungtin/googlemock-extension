@@ -5,9 +5,11 @@
  *     Author: Tin Tran <realtrantrungtin@gmail.com>
  */
 
+#include <dobby.h>
 #include <gtest/gtest.h>
 #include "gmocke-hook-helper.h"
 #include "logging/logging.h"
+#include "Dummy.h"
 
 using namespace googlemock_extension::helper;
 
@@ -20,22 +22,12 @@ class DemoReplace {
   static int static_func_return_3() { return 3; }
 };
 
-int global_func_return_4() {
-  return 4;
-}
-
-int global_func_return_5() {
-  return 5;
-}
-
 TEST(ReplaceFuntionTest, BeforeReplace) {
   DemoReplace obj;
   EXPECT_EQ(1, obj.func_return_1());
   EXPECT_EQ(2, obj.func_return_2());
   EXPECT_EQ(3, obj.static_func_return_3());
   EXPECT_EQ(3, DemoReplace::static_func_return_3());
-  EXPECT_EQ(4, global_func_return_4());
-  EXPECT_EQ(5, global_func_return_5());
 }
 
 TEST(ReplaceFuntionTest, Replace) {
@@ -56,13 +48,3 @@ TEST(ReplaceFuntionTest, ReplaceStatic) {
   EXPECT_EQ(3, obj.static_func_return_3());
   EXPECT_EQ(3, DemoReplace::static_func_return_3());
 }
-
-/*
-TEST(ReplaceFuntionTest, ReplaceGlobal) {
-  log_set_level(0);
-  DemoReplace obj;
-  replace_func_t(global_func_return_4, global_func_return_5);
-  EXPECT_EQ(5, global_func_return_4());
-  restore_func_t(global_func_return_4);
-}
-*/

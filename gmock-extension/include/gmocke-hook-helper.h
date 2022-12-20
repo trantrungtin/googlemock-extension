@@ -38,7 +38,7 @@ int replace_func_t(F1 origin, F2 replace) {
 
 template <typename F1>
 int restore_func_t(F1 origin) {
-  void* origin_ = reinterpret_cast<void*>((std::size_t&)origin);
+  void* origin_ = reinterpret_cast<void*>((size_t&)origin);
   return restore_func(origin_);
 }
 

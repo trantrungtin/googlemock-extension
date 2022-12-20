@@ -18,12 +18,14 @@ include_directories(
     ${ROOT_DIR}/thirdparty/Dobby/external/logging
 )
 
-add_executable(gmocke_test
-    ReplaceFunctionTest.cpp
+file(GLOB_RECURSE SOURCES
+    "*.cpp"
     ${GTEST_DIR}/src/gtest-all.cc
     ${GMOCK_DIR}/src/gmock-all.cc
     ${GMOCK_DIR}/src/gmock_main.cc
 )
+
+add_executable(gmocke_test ${SOURCES})
 
 target_link_libraries(gmocke_test pthread gmock_extension)
 
